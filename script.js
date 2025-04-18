@@ -1,5 +1,6 @@
 const BASE_URL = "https://pokeapi.co/api/v2/"
 const submit = document.getElementById("submit");
+const form = document.getElementById("recherche");
 
 function mapPokemon(data){
     return{
@@ -53,5 +54,6 @@ document.getElementById("recherche").addEventListener("submit", async function(e
     const nom = document.getElementById("nom").value;
     const recherche = id ? id : nom;
     await displayPokemon(recherche);
+    form.reset()
 });
     
