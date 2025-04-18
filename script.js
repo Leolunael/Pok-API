@@ -26,10 +26,9 @@ class Pokemon{
 
 async function getPokemon(identifier){
     const response = await fetch(BASE_URL + "pokemon/" + identifier);
-    const data=await response.json();
+    const data=await response.json()
     return mapPokemon(data);
 }
-
 
 function formatValue(value) {
     return Array.isArray(value) ? value.join(", ") : value;
@@ -53,6 +52,10 @@ document.getElementById("recherche").addEventListener("submit", async function(e
     const id = document.getElementById("id").value;
     const nom = document.getElementById("nom").value;
     const recherche = id ? id : nom;
+        if(/^[1-1025]+$/.exec(id)){
+            errorMessage.push("ID inconnu");
+            return;
+        }
     await displayPokemon(recherche);
     form.reset()
 });
